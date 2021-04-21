@@ -23,3 +23,4 @@ Route::get('/cari', [MahasiswaController::class,'cari']);
 Route::get('/tampil', [MahasiswaController::class,'tampil']);
 Route::get('/nilai/{id}', [MahasiswaController::class,'nilai'])->name('mahasiswa.nilai');
 Route::resource('articles', ArticleController::class);
+Route::get('/article/cetak_pdf', [ArticleController::class, 'cetak_pdf']);
