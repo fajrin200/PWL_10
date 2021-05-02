@@ -1,73 +1,53 @@
 @extends('mahasiswa.layout')
 
 @section('content')
-
     <div class="container mt-5">
         <div class="row justify-content-center align-items-center">
-            <div class="card" style="width: 24rem;">
+            <div class="card" style="width: 24rem">
                 <div class="card-header">
                     Edit Mahasiswa
                 </div>
                 <div class="card-body">
                     @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                        <div class="alert alert-danger">
+                            <strong> Whoops!!</strong> There were some problems with your input.<br><br>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
                     @endif
 
-                    <form method="post" action="{{ route('mahasiswa.update', $Mahasiswa->id) }}" id="myForm">
-                    @csrf
-                    @method('PUT')
-                    <div class="form-group">
-                        <label for="Nim">Nim</label>
-                        <input type="text" name="Nim" class="form-control" id="Nim" value="{{ $Mahasiswa->Nim }}" ariadescribedby="Nim" >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Nama">Nama</label>
-                        <input type="text" name="Nama" class="form-control" id="Nama" value="{{ $Mahasiswa->Nama }}" ariadescribedby="Nama" >
-                    </div>
-
-                    <div class="form-group">
+                    <form method="post" action="{{ route('mahasiswa.update', $Mahasiswa->id) }}" id="myForm" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group">
+                            <label for="Nim">Nim</label>
+                            <br><input type="text" name="Nim" class="form-control" id="Nim" value="{{ $Mahasiswa->Nim }}" aria-describedby="Nim">  
+                        </div>
+                        <div class="form-group">
+                            <label for="Nama">Nama</label>
+                            <br><input type="Nama" name="Nama" class="form-control" id="Nama" value="{{ $Mahasiswa->Nama }}" aria-describedby="Nama">
+                        </div>
+                        <div class="form-group">
                             <label for="kelas">Kelas</label>
                             <select name="kelas" class="form-control">
-                                @foreach ($kelas as $kls)
-                                    <option value="{{ $kls->id }}" {{ $Mahasiswa->kelas_id == $kls->id ? 'selected': '' }}>{{ $kls->nama_kelas }}</option>
+                                @foreach ($kelas as $item)
+                                    <option value="{{ $item->id }}" {{ $Mahasiswa->kelas_id == $item->id ? 'selected': '' }}>{{ $item->nama_kelas }}</option>
                                 @endforeach
                             </select>
                         </div>
-
-                    <div class="form-group">
-                        <label for="Jurusan">Jurusan</label>
-                        <input type="Jurusan" name="Jurusan" class="form-control" id="Jurusan" value="{{ $Mahasiswa->Jurusan }}" ariadescribedby="Jurusan" >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="No_Handphone">No_Handphone</label>
-                        <input type="No_Handphone" name="No_Handphone" class="form-control" id="No_Handphone" value="{{ $Mahasiswa->No_Handphone }}" ariadescribedby="No_Handphone" >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="EMail">Email</label>
-                        <input type="EMail" name="EMail" class="form-control" id="EMail" value="{{ $Mahasiswa->EMail }}" ariadescribedby="Email" >
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Tanggal_lahir">Tanggal Lahir</label>
-                        <input type="Tanggal_lahir" name="Tanggal_lahir" class="form-control" id="Tanggal_lahir" value="{{ $Mahasiswa->Tanggal_lahir }}" ariadescribedby="Tanggal_lahir" >
-                    </div>
-
-                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="Jurusan">Jurusan</label>
+                            <br><input type="Jurusan" name="Jurusan" class="form-control" id="Jurusan" value="{{ $Mahasiswa->Jurusan }}" aria-describedby="Jurusan">
+                        </div>
+                        
+                        <div class="form-group">
                             <label for="foto">Gambar</label>
                             <input type="file" class="form-control-file" required="required" name="foto" value="{{$Mahasiswa->foto}}"></br>
                             <img width="150px" src="{{asset('storage/'.$Mahasiswa->foto)}}">
                         </div>
-
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
