@@ -19,8 +19,8 @@ use App\Models\Mahasiswa;
 */
 
 Route::resource('mahasiswa', MahasiswaController::class);
-Route::get('/cari', [MahasiswaController::class,'cari']);
-Route::get('/tampil', [MahasiswaController::class,'tampil']);
-Route::get('/nilai/{id}', [MahasiswaController::class,'nilai'])->name('mahasiswa.nilai');
+Route::get('/cari', [MahasiswaController::class,'cari'])->name('mahasiswa.cari');
+Route::get('/tampil', [MahasiswaController::class,'tampil'])->name('mahasiswa.tampil');
+Route::get('/hasil/{id}', [MahasiswaController::class,'hasil'])->name('mahasiswa.nilai');
 Route::resource('articles', ArticleController::class);
-Route::get('/article/cetak_pdf', [ArticleController::class, 'cetak_pdf']);
+Route::get('/mahasiswa_pdf/{mahasiswa}', [MahasiswaController::class, 'cetak_pdf'])->name('mahasiswa.cetak');
