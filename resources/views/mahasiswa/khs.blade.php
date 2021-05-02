@@ -7,9 +7,9 @@
             <br><h1>KARTU HASIL STUDI(KHS)</h1>
         </div>
         <div class="card-body">
-                <p><b>Nama  : </b>{{ $mahasiswa->Nama }}
-                <p><b>NIM   : </b>{{ $mahasiswa->Nim }}
-                <p><b>Kelas : </b>{{ $mahasiswa->kelas->nama_kelas }}
+                <p><b>Nama  : </b>{{ $Mahasiswa->Nama }}
+                <p><b>NIM   : </b>{{ $Mahasiswa->Nim }}
+                <p><b>Kelas : </b>{{ $Mahasiswa->kelas->nama_kelas }}
         </div>
     </div>
 </div>
@@ -24,15 +24,16 @@
       </tr>
     </thead>
     <tbody>
-        @foreach ($mahasiswa->matakuliah as $item)
+        @foreach ($Mahasiswa->matakuliah as $item)
             <tr>
                 <th scope="row">{{$item->nama_matkul}}</th>
                 <td>{{$item->sks}}</td>
-                <td>{{$item->semester }}</td>
+                <td>{{ $item->semester }}</td>
                 <td>{{$item->pivot->nilai}}</td>
             </tr>
         @endforeach
     </tbody>
 </table>
 <a class="btn btn-success mt-3" href="{{ route('mahasiswa.index') }}">Kembali</a>
+<a class="btn btn-danger mt-3" href="{{ route('mahasiswa.cetak',$Mahasiswa->id) }}">Cetak Ke PDF</a>
 @endsection
