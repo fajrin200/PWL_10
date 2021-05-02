@@ -13,7 +13,7 @@ class AddFotoColumnIntoMahasiswaTable extends Migration
      */
     public function up()
     {
-        Schema::table('mahasiswa', function(Blueprint $table) {
+        Schema::table('mahasiswas', function(Blueprint $table) {
             $table->string('foto')->after('nama')->nullable();
         });
     }
@@ -25,7 +25,7 @@ class AddFotoColumnIntoMahasiswaTable extends Migration
      */
     public function down()
     {
-        Schema::table('mahasiswa', function (Blueprint $table) {
+        Schema::table('mahasiswas', function (Blueprint $table) {
             $table->dropColumn('foto');
         });
     }
